@@ -1,0 +1,42 @@
+﻿@model Nop.Admin.Models.Shared.PersianBirtthDayPickerModel
+@{
+    var bd = Model.DefaultYear + "/" + Model.DefaultMonth + "/" + Model.DefaultDay;
+}
+<input id="datepicker" value="@bd" type="text" class="form-control" />
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#datepicker").persianDatepicker({
+            format: "YYYY/MM/DD",
+            navigator: {
+                enabled: true,
+                text: {
+                    btnNextText: "بعد",
+                    btnPrevText: "قبل"
+                },
+                onNext: function (navigator) {
+                    //log("navigator next ");
+                },
+                onPrev: function (navigator) {
+                    //log("navigator prev ");
+                },
+                onSwitch: function (state) {
+                    // console.log("navigator switch ");
+                }
+            },
+            formatter: function (dateString) {
+                var date = new Date(dateString);
+                var year = date.getUTCFullYear();
+                var month = (date.getUTCMonth() + 1);
+                var day = date.getUTCDate();
+                $("#@Model.DayControlId").val(day);
+                $("#@Model.MonthControlId").val(month);
+                $("#@Model.YaerControlId").val(year);
+                var pdate = new persianDate(dateString);
+                pdate.formatPersian = true;
+                return pdate.format("dddd، YYYY/MM/D");
+            }
+        });
+    });
+
+</script>

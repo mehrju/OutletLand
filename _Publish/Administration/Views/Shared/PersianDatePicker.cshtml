@@ -1,0 +1,63 @@
+﻿@model Nop.Admin.Models.Shared.PersianDatePickerModel
+@{
+    DateTime? dateString = null;
+    if (Model.DefaultDateTime != null)
+    {
+        dateString = EngineContext.Current.Resolve<Nop.Services.Helpers.IDateTimeHelper>().ConvertToUserTime(Model.DefaultDateTime.Value, DateTimeKind.Utc);
+    }
+}
+<input id='@("inpt"+Model.ControlId)' class="datepicker-input" value="@dateString" type="text" />          
+<img id='@("cln"+Model.ControlId)' class="delete-date" title="پاک کردن تاریخ" src="/Themes/NopRoot/Content/Images/ico-delete.gif" />
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#@("inpt"+Model.ControlId)').persianDatepicker({
+            navigator: {
+                enabled: true,
+                text: {
+                    btnNextText: "بعد",
+                    btnPrevText: "قبل"
+                },
+                onNext: function (navigator) {
+                    //log("navigator next ");
+                },
+                onPrev: function (navigator) {
+                    //log("navigator prev ");
+                },
+                onSwitch: function (state) {
+                    // console.log("navigator switch ");
+                }
+            },
+            formatter: function (dateString) {
+                var date = new Date(dateString);
+                var year = date.getUTCFullYear();
+                var month = (date.getUTCMonth() + 1);
+                var day = date.getUTCDate();
+                var findate = month + "/" + day + "/" + year;
+                $("#@Model.ControlId").val(findate);
+                var pdate = new persianDate(dateString);
+                pdate.formatPersian = true;
+                return pdate.format("YYYY/MM/D");
+                
+            },
+        });
+
+        var len = '@Model.DefaultDateTime';
+        if (len == '') {
+            $('#@Model.ControlId').val('');
+            $('#@("inpt"+Model.ControlId)').val('');
+        }
+
+        $('#@("cln"+Model.ControlId)').click(function () {
+            $("#@Model.ControlId").val('');
+            $('#@("inpt"+Model.ControlId)').val('');
+        });
+    });
+
+</script>
+
+
+
+
