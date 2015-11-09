@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PayRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="terminalId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="installmentNumber" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="installmentInterval" type="tns:InstallmentIntervalType" />
+            <s:element minOccurs="0" maxOccurs="1" name="localDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="additionalData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="callBackUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sellerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="InstallmentIntervalType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Weekly" />
+          <s:enumeration value="Monthly" />
+          <s:enumeration value="Quarterly" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PayRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PayRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="terminalId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="saleOrderId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="saleReferenceCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PayGroupRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="terminalId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlOrderList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="additionalData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="callBackUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PayGroupRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PayGroupRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="PayRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:PayRequest" />
+  </wsdl:message>
+  <wsdl:message name="PayRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:PayRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyRequest" />
+  </wsdl:message>
+  <wsdl:message name="VerifyRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="PayGroupRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:PayGroupRequest" />
+  </wsdl:message>
+  <wsdl:message name="PayGroupRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:PayGroupRequestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="InstallmentWSSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PayRequest">
+      <wsdl:input message="tns:PayRequestSoapIn" />
+      <wsdl:output message="tns:PayRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRequest">
+      <wsdl:input message="tns:VerifyRequestSoapIn" />
+      <wsdl:output message="tns:VerifyRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PayGroupRequest">
+      <wsdl:input message="tns:PayGroupRequestSoapIn" />
+      <wsdl:output message="tns:PayGroupRequestSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="InstallmentWSSoap" type="tns:InstallmentWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayRequest">
+      <soap:operation soapAction="http://tempuri.org/PayRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRequest">
+      <soap:operation soapAction="http://tempuri.org/VerifyRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayGroupRequest">
+      <soap:operation soapAction="http://tempuri.org/PayGroupRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="InstallmentWSSoap12" type="tns:InstallmentWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayRequest">
+      <soap12:operation soapAction="http://tempuri.org/PayRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyRequest">
+      <soap12:operation soapAction="http://tempuri.org/VerifyRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayGroupRequest">
+      <soap12:operation soapAction="http://tempuri.org/PayGroupRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InstallmentWS">
+    <wsdl:port name="InstallmentWSSoap" binding="tns:InstallmentWSSoap">
+      <soap:address location="http://172.20.165.247:90/services/InstallmentWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="InstallmentWSSoap12" binding="tns:InstallmentWSSoap12">
+      <soap12:address location="http://172.20.165.247:90/services/InstallmentWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

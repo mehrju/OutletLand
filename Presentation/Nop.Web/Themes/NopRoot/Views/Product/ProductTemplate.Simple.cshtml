@@ -131,7 +131,7 @@
                         @if (!String.IsNullOrEmpty(@Html.Partial("_ProductSpecifications", Model.ProductSpecifications).ToString()))
                         {
 
-                            <li><a href="#specification" data-toggle="tab">Specifications</a></li>
+                            <li><a href="#specification" data-toggle="tab">@T("Products.Specs")</a></li>
                         }
                         @if (!String.IsNullOrEmpty(@Html.Partial("_ProductTags", Model.ProductTags).ToString()))
                         {

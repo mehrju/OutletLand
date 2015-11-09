@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_Root.cshtml";
+}
+@using Nop.Web.Framework;
+<form method="post" id="frmpay" action="https://pgw.bpm.bankmellat.ir/pgwchannel/startpay.mellat">
+    <input type="hidden" name="RefId" value="@ViewBag.result" />
+    <input type="submit" name="btnSend" value="انتقال به درگاه پرداخت" id="btnsend"/>
+</form>
+<script type="text/javascript">
+    $("#frmpay").trigger("submit");
+</script>

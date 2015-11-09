@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Nop.Plugin.Payments.Mellat.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Nop_Plugin_Payments_Mellat_ir_shaparak_bpm_PaymentGatewayImplService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://bpm.shaparak.ir/pgwchannel/services/pgw</Value>
+    </Setting>
+    <Setting Name="Nop_Plugin_Payments_Mellat_InstallmentWS_InstallmentWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://172.20.165.247:90/services/InstallmentWS.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

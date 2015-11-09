@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Root.cshtml";}
+
+@using Nop.Web.Framework;
+
+@{
+    var text = ViewBag.result;
+    var order = ViewBag.orderId;
+    
+        <div>
+            <div style=" width: 100%; text-align: center; border: grey 2px solid; margin-bottom: 10px;">
+                <h2>نتیجه بازگشت از درگاه پرداخت اینترنتی</h2>
+                <hr />
+                <p>@text</p>
+                @if (order != 0)
+                {
+                    <a href="@Url.RouteUrl("OrderDetails", new { orderId = order })">@string.Format(T("Account.CustomerOrders.RecurringOrders.ViewInitialOrder").Text, order)</a>
+                }
+            </div>
+            <div style=" width: 100%; text-align: center; border: red 2px solid;">
+                <h3>توجه</h3>
+                <p style="color: green;">
+                    مشتری گرامی ، چنانچه در فرآیند خرید مبلغی از حساب شما کسر شده است، در صورتی که مبلغ
+                    مورد نظر بعد از 72 ساعت به حساب شما واریز نشد، با شماره پیگیری که در اختیارتان هست ،
+                    از بانک پیگیری بفرمائید.
+                </p>
+                @if (!string.IsNullOrEmpty(ViewBag.cashOrder))
+                {
+                    <br/>
+                    <span>شماره درخواست پرداخت نقدی : </span>
+                    @ViewBag.cashOrder
+                }
+                @if (!string.IsNullOrEmpty(ViewBag.cachRefId))
+                {
+                    <br />
+                    <span>کد مرجع تراکنش خرید نقدی : </span>
+                    @ViewBag.cachRefId
+                }
+                @if (!string.IsNullOrEmpty(ViewBag.insOrder))
+                {
+                    <br />
+                    <span>شماره درخواست پرداخت اقساطی : </span>
+                    @ViewBag.insOrder
+                }
+                @if (!string.IsNullOrEmpty(ViewBag.insRefId))
+                {
+                    <br />
+                    <span>کد مرجع تراکنش خرید اقساطی : </span>
+                    @ViewBag.insRefId
+                }
+            </div>
+        </div>
+}
+
