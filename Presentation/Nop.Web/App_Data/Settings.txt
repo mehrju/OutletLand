@@ -1,2 +1,2 @@
 DataProvider: sqlserver
-DataConnectionString: Data Source=.;Initial Catalog=OutletDb;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=666666
+DataConnectionString: Data Source=144.76.1.202,2008;Initial Catalog=persiann_electradeDb;Integrated Security=False;Persist Security Info=False;User ID=persiann_electradeUser;Password=!Qw123456

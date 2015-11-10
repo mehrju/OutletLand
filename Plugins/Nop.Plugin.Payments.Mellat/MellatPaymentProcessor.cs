@@ -177,6 +177,7 @@ namespace Nop.Plugin.Payments.Mellat
         /// public void
         public void PostProcessPayment(PostProcessPaymentRequest postProcessPaymentRequest)
         {
+            //Todo: اگر مشخصات اولیه درگاه ثبت نشده باشد، نباید خطا داشته باشیم.
             var order = postProcessPaymentRequest.Order;
             #region [Call bpMellat Web Service]
 
