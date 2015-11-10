@@ -255,7 +255,7 @@ namespace Nop.Plugin.Payments.Mellat
 
         public bool HidePaymentMethod(IList<ShoppingCartItem> cart)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         /// <summary>
