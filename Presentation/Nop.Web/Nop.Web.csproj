@@ -2242,6 +2242,8 @@
     <Content Include="Themes\NopRoot\Views\Topic\TopicBlock.cshtml" />
     <Content Include="Themes\NopRoot\Views\Topic\TopicDetails.cshtml" />
     <Content Include="Themes\NopRoot\Views\Web.config" />
+    <Content Include="Views\Common\Complaints.cshtml" />
+    <Content Include="Themes\NopRoot\Views\Common\Complaints.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\bin\" />

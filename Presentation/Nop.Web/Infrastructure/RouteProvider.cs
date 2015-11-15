@@ -71,6 +71,12 @@ namespace Nop.Web.Infrastructure
                             "contactus",
                             new { controller = "Common", action = "ContactUs" },
                             new[] { "Nop.Web.Controllers" });
+
+            routes.MapLocalizedRoute("Complaints",
+                            "complaints",
+                            new { controller = "Common", action = "Complaints" },
+                            new[] { "Nop.Web.Controllers" });
+
             //sitemap
             routes.MapLocalizedRoute("Sitemap",
                             "sitemap",

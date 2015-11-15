@@ -445,6 +445,7 @@ namespace Nop.Web.Controllers
             };
             return View(model);
         }
+
         [HttpPost, ActionName("ContactUs")]
         [CaptchaValidator]
         public ActionResult ContactUsSend(ContactUsModel model, bool captchaValid)
@@ -511,6 +512,89 @@ namespace Nop.Web.Controllers
             model.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage;
             return View(model);
         }
+
+
+        //Complain : By Reza
+        [NopHttpsRequirement(SslRequirement.No)]
+        public ActionResult Complaints()
+        {
+            var model = new ContactUsModel
+            {
+                Email = _workContext.CurrentCustomer.Email,
+                FullName = _workContext.CurrentCustomer.GetFullName(),
+                DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage
+            };
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Complaints")]
+        [CaptchaValidator]
+        public ActionResult ComplaintsSend(ContactUsModel model, bool captchaValid)
+        {
+            //validate CAPTCHA
+            if (_captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage && !captchaValid)
+            {
+                ModelState.AddModelError("", _localizationService.GetResource("Common.WrongCaptcha"));
+            }
+
+            if (ModelState.IsValid)
+            {
+                string email = model.Email.Trim();
+                string fullName = model.FullName;
+                string subject = string.Format(_localizationService.GetResource("ContactUs.EmailSubject"), _storeContext.CurrentStore.GetLocalized(x => x.Name));
+
+                var emailAccount = _emailAccountService.GetEmailAccountById(_emailAccountSettings.DefaultEmailAccountId);
+                if (emailAccount == null)
+                    emailAccount = _emailAccountService.GetAllEmailAccounts().FirstOrDefault();
+                if (emailAccount == null)
+                    throw new Exception("No email account could be loaded");
+
+                string from;
+                string fromName;
+                string body = Core.Html.HtmlHelper.FormatText(model.Enquiry, false, true, false, false, false, false);
+                //required for some SMTP servers
+                if (_commonSettings.UseSystemEmailForContactUsForm)
+                {
+                    from = emailAccount.Email;
+                    fromName = emailAccount.DisplayName;
+                    body = string.Format("<strong>From</strong>: {0} - {1}<br /><br />{2}",
+                        Server.HtmlEncode(fullName),
+                        Server.HtmlEncode(email), body);
+                }
+                else
+                {
+                    from = email;
+                    fromName = fullName;
+                }
+                _queuedEmailService.InsertQueuedEmail(new QueuedEmail
+                {
+                    From = from,
+                    FromName = fromName,
+                    To = emailAccount.Email,
+                    ToName = emailAccount.DisplayName,
+                    ReplyTo = email,
+                    ReplyToName = fullName,
+                    Priority = 5,
+                    Subject = subject,
+                    Body = body,
+                    CreatedOnUtc = DateTime.UtcNow,
+                    EmailAccountId = emailAccount.Id
+                });
+
+                model.SuccessfullySent = true;
+                model.Result = _localizationService.GetResource("ContactUs.YourEnquiryHasBeenSent");
+
+                //activity log
+                _customerActivityService.InsertActivity("PublicStore.ContactUs", _localizationService.GetResource("ActivityLog.PublicStore.ContactUs"));
+
+                return View(model);
+            }
+
+            model.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage;
+            return View(model);
+        }
+        //Complain : By Reza
+
 
         //sitemap page
         [NopHttpsRequirement(SslRequirement.No)]
