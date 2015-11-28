@@ -1,0 +1,48 @@
+﻿@model Nop.Plugin.Widgets.ENamad.Models.ConfigurationModel
+@using Nop.Web.Framework;
+@{
+    Layout = "";
+}
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+
+@using (Html.BeginForm())
+{
+    <hr/>
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.OverrideStoreCheckboxFor(model => model.PlacedIn_OverrideForStore, model => model.PlacedIn_OverrideForStore, Model.ActiveStoreScopeConfiguration)
+                @Html.NopLabelFor(model => model.PlacedIn):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.PlacedIn, (List<SelectListItem>)ViewBag.Zones)
+                @Html.ValidationMessageFor(model => model.PlacedIn)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.OverrideStoreCheckboxFor(model => model.IsActive_OverrideForStore, model => model.IsActive_OverrideForStore, Model.ActiveStoreScopeConfiguration)
+                @Html.NopLabelFor(model => model.IsActive):
+            </td>
+            <td class="adminData">
+                @Html.CheckBoxFor(model => model.IsActive)
+                @Html.ValidationMessageFor(model => model.IsActive)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.OverrideStoreCheckboxFor(model => model.ENamadCode_OverrideForStore, model => model.ENamadCode_OverrideForStore, Model.ActiveStoreScopeConfiguration)
+                @Html.NopLabelFor(model => model.ENamadCode):
+            </td>
+            <td class="adminData">
+                @Html.TextAreaFor(model => model.ENamadCode)
+                @Html.ValidationMessageFor(model => model.ENamadCode)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+    </table>
+}

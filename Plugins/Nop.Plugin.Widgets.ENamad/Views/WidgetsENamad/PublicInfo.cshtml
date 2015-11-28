@@ -1,0 +1,11 @@
+﻿@model Nop.Plugin.Widgets.ENamad.Models.PublicInfoModel
+
+@if (!string.IsNullOrEmpty(Model.ENamadCode) && Model.IsActive)
+{
+    @Html.Raw(Model.ENamadCode)
+}
+else
+{
+    <h6>محل نمایش  نماد اعتماد الکترونیکی</h6>
+    <img src="/Plugins/Widgets.ENamad/logo.jpg" />
+}

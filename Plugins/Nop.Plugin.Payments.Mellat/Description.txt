@@ -3,6 +3,6 @@ FriendlyName: Mellat
 SystemName: Payments.Mellat
 Version: 1.00
 SupportedVersions: 3.50
-Author: Reza Piri
+Author: WWW.Persian-NopCommerce.Ir
 DisplayOrder: 1
 FileName: Nop.Plugin.Payments.Mellat.dll

@@ -27,3 +27,4 @@ Widgets.GoogleAnalytics
 Widgets.NivoSlider
 Payments.CashOnDelivery
 Payments.Mellat
+Widgets.ENamad

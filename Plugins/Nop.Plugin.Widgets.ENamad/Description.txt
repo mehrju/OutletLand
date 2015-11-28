@@ -1,0 +1,8 @@
+﻿Group: Widgets
+FriendlyName: Iran ENamad Plugin
+SystemName: Widgets.ENamad
+Version: 1.0
+SupportedVersions: 3.50
+Author: WWW.Persian-NopCommerce.Ir
+DisplayOrder: 1
+FileName: Nop.Plugin.Widgets.ENamad.dll

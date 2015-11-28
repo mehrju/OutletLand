@@ -617,6 +617,7 @@
     <Content Include="Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
     <Content Include="Content\magnific-popup\magnific-popup.css" />
+    <Content Include="Themes\NopRoot\Content\images\BPMLogo.png" />
     <Content Include="Themes\NopRoot\Content\persiandatepicker\css\persian-datepicker.css" />
     <Content Include="Themes\NopRoot\Content\persiandatepicker\js\config.js" />
     <Content Include="Themes\NopRoot\Content\persiandatepicker\js\constant.js" />
